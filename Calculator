@@ -1,0 +1,35 @@
+class Calculator:
+    def __init__(self) -> None:
+        self.numbers: list[float] = []
+        self.round_preset: int = 3
+
+    def ask_for_numbers(self) -> None:
+        while True:
+            try:
+                num1: float = float(input("Input your first number: "))
+                break
+            except ValueError:
+                print("Invalid input")
+        while True:
+            try:
+                num2: float = float(input("Input your second number: "))
+                break
+            except ValueError:
+                print("Invalid number")
+        self.numbers = [num1, num2]
+
+    def add_num(self) -> float:
+        return round(self.numbers[0] + self.numbers[1], self.round_preset)
+
+    def substract_num(self) -> float:
+        return round(self.numbers[0] - self.numbers[1], self.round_preset)
+
+    def multiply_num(self) -> float:
+        return round(self.numbers[0] * self.numbers[1], self.round_preset)
+
+    def divide_num(self) -> float | None:
+        try:
+            return round(self.numbers[0] / self.numbers[1], self.round_preset)
+        except ZeroDivisionError:
+            print("Division by 0 is not allowed!")
+            return None
